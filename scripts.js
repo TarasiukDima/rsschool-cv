@@ -1,67 +1,68 @@
-document.addEventListener('DOMContentLoaded', (event) => {
-    /* code light initial start */
-    hljs.initHighlightingOnLoad();
-    /* code light initial end */
+document.addEventListener('DOMContentLoaded', () => {
+  /* code light initial start */
+  hljs.initHighlightingOnLoad();
+  /* code light initial end */
 
-    /* burger menu start */
-    const menuSelector = document.querySelector('.header__menu');
-    const burderBtn = document.querySelector('.burger');
-    const anchors = document.querySelectorAll('.anchor');
+  /* burger menu start */
+  const menuSelector = document.querySelector('.header__menu');
+  const burderBtn = document.querySelector('.burger');
+  const anchors = document.querySelectorAll('.header__list_anchor');
 
-    const burger = (burderBtn, menuSelector) => {
+  const burger = (burderBtn, menuSelector) => {
 
-        burderBtn.addEventListener('click', function () {
-            this.classList.toggle('active__burger');
-            menuSelector.classList.toggle('active__nav');
-        });
-    };
+    burderBtn.addEventListener('click', function () {
+      this.classList.toggle('active-burger');
+      menuSelector.classList.toggle('active-nav');
+    });
+  };
 
-    burger(burderBtn, menuSelector);
-    /* burger menu end */
-
-
-
-    /* page anchor start */
-    const pageAnchor = (anchors, burderBtn, menuSelector) => {
-        const speed = 0.4;
-
-        anchors.forEach(function (item) {
-            item.addEventListener('click', function (event) {
-                event.preventDefault();
-
-                const coordY = self.pageYOffset;
-                const anchorPlace = this.href.replace(/[^#]*(.*)/, '$1');
-                let coordYAnchorPlace = document.querySelector(anchorPlace).getBoundingClientRect().top;
-                let start = null;
-
-                function step(time) {
-                    if (start === null) start = time;
-                    let progress = time - start;
-                    let distanceScroll = (
-                        coordYAnchorPlace < 0
-                            ? Math.max(coordY - progress / speed, coordY + coordYAnchorPlace)
-                            : Math.min(coordY + progress / speed, coordY + coordYAnchorPlace)
-                    );
-                    window.scrollTo(0, distanceScroll);
-                    if (distanceScroll != coordY + coordYAnchorPlace) {
-                        requestAnimationFrame(step)
-                    }
-                }
-
-                burderBtn.classList.remove('active__burger');
-                menuSelector.classList.remove('active__nav');
-                requestAnimationFrame(step);
-            }, false);
-        });
-    };
-    pageAnchor(anchors, burderBtn, menuSelector);
-    /* page anchor end */
+  burger(burderBtn, menuSelector);
+  /* burger menu end */
 
 
-    /* score start */
+
+  /* page anchor start */
+  const pageAnchor = (anchors, burderBtn, menuSelector) => {
+    const speed = 0.4;
+
+    anchors.forEach(function (item) {
+      item.addEventListener('click', function (event) {
+        event.preventDefault();
+
+        const coordY = self.pageYOffset;
+        const anchorPlace = this.href.replace(/[^#]*(.*)/, '$1');
+        let coordYAnchorPlace = document.querySelector(anchorPlace).getBoundingClientRect().top;
+        let start = null;
+
+        function step(time) {
+          if (start === null) start = time;
+          let progress = time - start;
+          let distanceScroll = (
+            coordYAnchorPlace < 0
+              ? Math.max(coordY - progress / speed, coordY + coordYAnchorPlace)
+              : Math.min(coordY + progress / speed, coordY + coordYAnchorPlace)
+          );
+          window.scrollTo(0, distanceScroll);
+          if (distanceScroll != coordY + coordYAnchorPlace) {
+            requestAnimationFrame(step)
+          }
+        }
+
+        burderBtn.classList.remove('active-burger');
+        menuSelector.classList.remove('active-nav');
+        requestAnimationFrame(step);
+      }, false);
+    });
+  };
+  pageAnchor(anchors, burderBtn, menuSelector);
+  /* page anchor end */
+
+
+  /* score start */
+  const showScore = () => {
     console.log('вёрстка валидная + ', 10);
     console.log('вёрстка семантическая + ', 20);
-    console.log('---aside, figure, figcaption, footer, header, main, nav, section');
+    console.log('---, figure, figcaption, footer, header, main, nav, section');
     console.log('для оформления СV используются css-стили + ', 10);
     console.log('контент размещается в блоке, который горизонтально центрируется на странице. Фоновый цвет, если он есть, тянется во всю ширину страницы + ', 10);
     console.log('вёрстка адаптивная: ни на одном из разрешений экрана до 320px включительно не появляется горизонтальная полоса прокрутки, при этом всё содержание страницы сохраняется + ', 10);
@@ -75,6 +76,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
     console.log('выполнены требования к Pull Request: есть ссылка на задание, скриншот страницы СV, ссылка на деплой страницы CV на GitHub Pages, выполнена самооценка (самооценку расписываем по пунктам критериев оценки, указывая балл за каждый пункт) + ', 10);
     console.log('дизайн, оформление, качество выполнения CV не ниже чем в примерах CV + ', 10);
     console.log('Total: 150/160');
-    /* score end */
+  }
+  // showScore();
+  /* score end */
 
 });

@@ -1,0 +1,26 @@
+@mixin dflex($jc: center, $ai: stretch, $wrap: wrap, $fd: row) {
+  display: flex;
+  flex-direction: $fd;
+  align-items: $ai;
+  justify-content: $jc;
+  flex-wrap: $wrap;
+}
+
+
+@mixin tablet() {
+  @media screen and (max-width: 991px) {
+    @content;
+  }
+}
+
+@mixin smallTablet() {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin mobile() {
+  @media screen and (max-width: 575px) {
+    @content;
+  }
+}
